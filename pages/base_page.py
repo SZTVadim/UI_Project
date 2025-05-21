@@ -11,7 +11,7 @@ class BasePage:
         self.driver = driver
         self.wait = wait
 
-    def open_page(self, url):
+    def open_page(self, url=''):
         self.driver.get(f'{self.url_base}{url}')
 
     def await_element(self, locator):

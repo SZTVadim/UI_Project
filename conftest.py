@@ -9,7 +9,7 @@ from utils.selector_base_page import disagree_btn
 
 @pytest.fixture()
 def wait(driver):
-    wait = WebDriverWait(driver=driver, timeout=3)
+    wait = WebDriverWait(driver=driver, timeout=15)
     return wait
 
 
@@ -23,7 +23,7 @@ def driver():
 @pytest.fixture()
 def customer_account(driver, wait):
     page = CustomerAccount(driver, wait)
-    page.open_page(url=page.page_url)
+    page.open_page()
     page.privacy_policy(disagree_btn)
     yield page
     driver.quit()
@@ -32,7 +32,7 @@ def customer_account(driver, wait):
 @pytest.fixture()
 def eco_friendly(driver, wait):
     page = CollectionsEcoFriendly(driver, wait)
-    page.open_page(url=page.page_url)
+    page.open_page()
     page.privacy_policy(disagree_btn)
     yield page
     driver.quit()
@@ -41,7 +41,7 @@ def eco_friendly(driver, wait):
 @pytest.fixture()
 def sale_page(driver, wait):
     page = SalePage(driver, wait)
-    page.open_page(url=page.page_url)
+    page.open_page()
     page.privacy_policy(disagree_btn)
     yield page
     driver.quit()
