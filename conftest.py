@@ -28,7 +28,7 @@ def register_page(driver, wait):
 
 
 @pytest.fixture()
-def eco_friendly(driver, wait):
+def eco_friendly_page(driver, wait):
     page = CollectionsEcoFriendly(driver, wait)
     yield page
     driver.quit()
@@ -42,7 +42,7 @@ def sale_page(driver, wait):
 
 
 @pytest.fixture()
-def jackets_women(driver, wait):
+def jackets_women_page(driver, wait):
     page = JacketsWomen(driver, wait)
     yield page
     driver.quit()

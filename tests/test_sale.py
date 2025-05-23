@@ -8,7 +8,7 @@ def test_current_menu_sale(sale_page):
     sale_page.check_current_menu_section('Sale')  # проверяем что находимся в меню Sale
 
 
-def test_redirect_to_jackets(sale_page, jackets_women):
+def test_redirect_to_jackets(sale_page, jackets_women_page):
     sale_page.first_page_open()
     sale_page.redirect_to_page('Jackets')  # проверяем переход в другой раздел
-    jackets_women.check_that_page_title_is('Jackets')
+    jackets_women_page.check_that_page_title_is('Jackets')
