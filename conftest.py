@@ -1,15 +1,15 @@
 import pytest
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
-from pages.customer_account import CustomerAccount
+from pages.create_account import CreateAccount
 from pages.collections_eco_friendly import CollectionsEcoFriendly
+from pages.jackets_women import JacketsWomen
 from pages.sale import SalePage
-from utils.selector_base_page import disagree_btn
 
 
 @pytest.fixture()
 def wait(driver):
-    wait = WebDriverWait(driver=driver, timeout=15)
+    wait = WebDriverWait(driver=driver, timeout=20)
     return wait
 
 
@@ -21,10 +21,8 @@ def driver():
 
 
 @pytest.fixture()
-def customer_account(driver, wait):
-    page = CustomerAccount(driver, wait)
-    page.open_page()
-    page.privacy_policy(disagree_btn)
+def register_page(driver, wait):
+    page = CreateAccount(driver, wait)
     yield page
     driver.quit()
 
@@ -32,8 +30,6 @@ def customer_account(driver, wait):
 @pytest.fixture()
 def eco_friendly(driver, wait):
     page = CollectionsEcoFriendly(driver, wait)
-    page.open_page()
-    page.privacy_policy(disagree_btn)
     yield page
     driver.quit()
 
@@ -41,7 +37,12 @@ def eco_friendly(driver, wait):
 @pytest.fixture()
 def sale_page(driver, wait):
     page = SalePage(driver, wait)
-    page.open_page()
-    page.privacy_policy(disagree_btn)
+    yield page
+    driver.quit()
+
+
+@pytest.fixture()
+def jackets_women(driver, wait):
+    page = JacketsWomen(driver, wait)
     yield page
     driver.quit()

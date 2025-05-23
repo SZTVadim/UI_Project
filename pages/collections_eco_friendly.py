@@ -1,28 +1,29 @@
 from pages.base_page import BasePage
-from utils.selector_collections_eco_friendly import sort_by, sort_element
+from utils.selector_collections_eco_friendly import sort_by, sort_element, all_elements, first_element, second_element
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as ec
+from typing import Literal
 
 
 class CollectionsEcoFriendly(BasePage):
     page_url = '/collections/eco-friendly.html'
 
-    def sorted_price_asc(self):  # по дефолту asc ⬆
-        self.finding_element(*sort_by).send_keys('Price', Keys.ENTER)
+    def click_sort(self, sorting_parameter: Literal["Position", "Product Name", "Price"],
+                   sort_type: Literal["asc", "desc"]):
+        if sort_type == 'asc':
+            self.element(*sort_by).send_keys(sorting_parameter, Keys.ENTER)
+        elif sort_type == 'desc':
+            self.element(*sort_by).send_keys(sorting_parameter, Keys.ENTER)
+            self.element(*sort_element).click()
+        else:
+            return 'Введите тип сортировки "asc" или "desc"'
 
-    def sorted_price_desc(self):  # сортировка desc
-        self.finding_element(*sort_by).send_keys('Price', Keys.ENTER)
-        self.finding_element(*sort_element).click()
-
-    def assert_price_elements_asc(self, all_elements, first_element, second_element):
-        self.wait.until(ec.visibility_of_element_located((By.CSS_SELECTOR, '.column.main')))
-        first = self.finding_elements(*all_elements)[0].find_element(*first_element).text.strip('$').split('.')[0]
-        second = self.finding_elements(*all_elements)[1].find_element(*second_element).text.strip('$').split('.')[0]
-        assert int(first) < int(second), "do not ascending"
-
-    def assert_price_elements_desc(self, all_elements, first_element, second_element):
+    def assert_price_after_sort(self, sort_type: Literal["asc", "desc"]):
         self.await_element(all_elements)
-        first = self.finding_elements(*all_elements)[0].find_element(*first_element).text.strip('$').split('.')[0]
-        second = self.finding_elements(*all_elements)[1].find_element(*second_element).text.strip('$').split('.')[0]
-        assert int(first) > int(second), "do not ascending"
+        first = self.elements(*all_elements)[0].find_element(*first_element).text.strip('$').split('.')[0]
+        second = self.elements(*all_elements)[1].find_element(*second_element).text.strip('$').split('.')[0]
+        if sort_type == 'asc':
+            assert int(first) < int(second), "do not ascending"
+        elif sort_type == 'desc':
+            assert int(first) > int(second), "do not descending"
+        else:
+            return 'Введите тип сортировки "asc" или "desc"'
