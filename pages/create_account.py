@@ -17,9 +17,8 @@ class CreateAccount(BasePage):
 
     def assert_required_input_error(self, name_input, text):
         locator = locator_for_error(name_input)
-        print(locator)
-        self.await_element(locator)
         assert locator is not None, f'Name input for {name_input} not found!'
+        self.await_element(locator)
         element = self.element(*locator)
         assert element.text == text, f'message is incorrect, your message \n{element().text}'
 
