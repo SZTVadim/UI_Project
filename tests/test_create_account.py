@@ -1,4 +1,4 @@
-from utils.helper import text_email_already_exists, text_required_input_error, text_account_created_message
+from utils.test_data import text_email_already_exists, text_required_input_error, text_account_created_message
 
 
 def test_create_account_valid_case(register_page):  # Указать НЕ ЗАРЕГИСТРИРОВАННЫЙ email
