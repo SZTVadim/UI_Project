@@ -1,8 +1,8 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-from utils.selector_base_page import disagree_btn, title_h1
-from utils.selector_sale import menu_sale
+from test_UI_svs_selenium.utils.selector_base_page import disagree_btn, title_h1
+from test_UI_svs_selenium.utils.selector_sale import menu_sale
 
 
 class BasePage:

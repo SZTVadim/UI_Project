@@ -1,5 +1,5 @@
-from pages.base_page import BasePage
-from utils.selector_collections_eco_friendly import sort_by, sort_element, all_elements, first_element, second_element
+from test_UI_svs_selenium.pages.base_page import BasePage
+from test_UI_svs_selenium.utils.selector_collections_eco_friendly import sort_by, sort_element, all_elements, first_element, second_element
 from selenium.webdriver.common.keys import Keys
 from typing import Literal
 

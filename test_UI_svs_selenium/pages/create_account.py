@@ -1,7 +1,9 @@
-from pages.base_page import BasePage
-from utils.selector_create_account import success_message, error_message_registration, create_button, \
+from playwright.sync_api import expect
+
+from test_UI_svs_selenium.pages.base_page import BasePage
+from test_UI_svs_selenium.utils.selector_create_account import success_message, error_message_registration, create_button, \
     input_first_name, input_last_name, input_email, input_password, input_confirm_password
-from utils.helper import locator_for_error
+from test_UI_svs_selenium.utils.helper import locator_for_error
 
 
 class CreateAccount(BasePage):
@@ -15,7 +17,7 @@ class CreateAccount(BasePage):
         self.element(*input_confirm_password).send_keys(confirm_password)
         self.click_create_account_button()
 
-    def assert_required_input_error(self, name_input, text):
+    def expect_required_input_error(self, name_input, text):
         locator = locator_for_error(name_input)
         assert locator is not None, f'Name input for {name_input} not found!'
         self.await_element(locator)
@@ -25,12 +27,12 @@ class CreateAccount(BasePage):
     def click_create_account_button(self):
         self.element(*create_button).click()
 
-    def assert_account_created_message(self, text):
-        self.await_element(success_message)
-        message = self.element(*success_message).text
+    def expect_account_created_message(self, text):
+        # self.await_element(success_message)
+        message = self.element(success_message)
         assert message == text
 
-    def assert_email_already_exists(self, text):
+    def expect_email_already_exists(self, text):
         self.await_element(error_message_registration)
         message = self.element(*error_message_registration).text
-        assert message == text, f'твое сообщение: \n{message}'
+        expect(message).to_have_text(text)

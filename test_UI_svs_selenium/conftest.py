@@ -1,10 +1,10 @@
 import pytest
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
-from pages.create_account import CreateAccount
-from pages.collections_eco_friendly import CollectionsEcoFriendly
-from pages.jackets_women import JacketsWomen
-from pages.sale import SalePage
+from test_UI_svs_pw.pages.create_account import CreateAccount
+from test_UI_svs_pw.pages.collections_eco_friendly import CollectionsEcoFriendly
+from test_UI_svs_pw.pages.jackets_women import JacketsWomen
+from test_UI_svs_pw.pages.sale import SalePage
 
 
 @pytest.fixture()

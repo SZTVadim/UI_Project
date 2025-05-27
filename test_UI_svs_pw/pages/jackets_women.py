@@ -1,4 +1,4 @@
-from pages.base_page import BasePage
+from test_UI_svs_pw.pages.base_page import BasePage
 
 
 class JacketsWomen(BasePage):
