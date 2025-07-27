@@ -1,6 +1,7 @@
 from test_UI_svs_pw.utils.selector_create_account import error_first_name
 from test_UI_svs_pw.utils.test_data import text_email_already_exists, text_required_input_error, \
     text_account_created_message
+import pytest
 
 
 @pytest.mark.regression
