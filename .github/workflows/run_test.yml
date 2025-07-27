@@ -49,11 +49,14 @@ jobs:
             libgles2 \
             libx264-dev
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Install Playwright dependencies
+      - name: Install Playwright system dependencies
         run: sudo npx playwright install-deps
 
-      - name: run tests
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
         run: pytest
