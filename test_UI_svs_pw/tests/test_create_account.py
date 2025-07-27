@@ -3,6 +3,7 @@ from test_UI_svs_pw.utils.test_data import text_email_already_exists, text_requi
     text_account_created_message
 
 
+@pytest.mark.regression
 def test_create_account_valid_case(register_page):  # Указать НЕ ЗАРЕГИСТРИРОВАННЫЙ email
     register_page.first_page_open()
     register_page.submit_registration_form(firstname='Ted', lastname='Testov', email='7toov@tesst.com',
@@ -10,6 +11,7 @@ def test_create_account_valid_case(register_page):  # Указать НЕ ЗАР
     register_page.check_account_created_message(text_account_created_message)
 
 
+@pytest.mark.regression
 def test_existing_email(register_page):
     register_page.first_page_open()
     register_page.submit_registration_form(firstname='Ted', lastname='Testov', email='tttesttoov@test.com',
@@ -18,6 +20,7 @@ def test_existing_email(register_page):
     register_page.check_email_already_exists(text_email_already_exists)
 
 
+@pytest.mark.regression
 def test_empty_first_name(register_page):
     register_page.first_page_open()
     register_page.submit_registration_form(firstname='', lastname='Testov', email='test@test.com',
