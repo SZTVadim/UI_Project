@@ -1,3 +1,6 @@
+import pytest
+
+
 @pytest.mark.smoke
 def test_assert_header_h1(eco_friendly_page):
     eco_friendly_page.first_page_open()
