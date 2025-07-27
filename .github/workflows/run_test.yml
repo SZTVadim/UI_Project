@@ -52,8 +52,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install browser for playwright
-        run: playwright install
+      - name: Install Playwright dependencies
+        run: sudo npx playwright install-deps
 
       - name: run tests
         run: pytest
